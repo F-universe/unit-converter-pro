@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UnitConverter Pro</title>
+</head>
+<body>
+    <h1>Unit Converter Pro</h1>
+    <form method="post">
+        <label>Category:</label>
+        <select name="category" onchange="this.form.submit()">
+            {% for cat in categories %}
+                <option value="{{cat}}" {% if cat == selected_category %}selected{% endif %}>{{cat}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Value:</label>
+        <input type="number" name="value" step="any" required><br><br>
+
+        <label>From:</label>
+        <select name="from_unit">
+            {% for u in units %}
+                <option value="{{u}}">{{u}}</option>
+            {% endfor %}
+        </select>
+
+        <label>To:</label>
+        <select name="to_unit">
+            {% for u in units %}
+                <option value="{{u}}">{{u}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if result != None %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
